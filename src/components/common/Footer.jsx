@@ -9,13 +9,13 @@ const Footer = () => {
   return (
     <div className="relative">
       {/* Map section at the top */}
-      <div className="h-20 bg-gray-200 overflow-hidden">
+      {/* <div className="h-20 bg-gray-200 overflow-hidden">
         <img
           src="/api/placeholder/1200/80"
           alt="Map "
           className="w-full h-full object-cover"
         />
-      </div>
+      </div> */}
 
       {/* Footer main content */}
       <motion.footer
@@ -127,15 +127,7 @@ const Footer = () => {
               </div>
 
               {/* Right side - World map image */}
-              <div className="order-1 lg:order-2 flex items-center justify-center">
-                <div className="w-full max-w-lg">
-                  <img
-                    src={map}
-                    alt="World map showing global reach"
-                    className="w-full h-auto opacity-80"
-                  />
-                </div>
-              </div>
+              
             </div>
 
             <div className="mt-7 flex gap-2">

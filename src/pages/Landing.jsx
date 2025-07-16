@@ -11,6 +11,7 @@ import AboutUsSection from "../components/landing/AboutUsSection";
 import FAQSection from "../components/landing/FAQSection ";
 import ContactSection from "../components/landing/ContactSection";
 import EllipzaLanding from "../components/landing/EllipzaLanding ";
+import KeyBenefits from "../components/landing/KeyBenefits";
 
 const Landing = () => {
   return (
@@ -29,6 +30,7 @@ const Landing = () => {
       <Summary/>
       <ServicesSection/>
       <OurTeamSection/>
+      <KeyBenefits/>
       <AboutUsSection/>
       <ContactSection />
       <FAQSection/>
