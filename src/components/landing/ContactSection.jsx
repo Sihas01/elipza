@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import image from '../../assets/images/contactUs.png'
 import logo from '../../assets/images/epliza.png'
 
@@ -17,14 +18,28 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = () => {
-    if (formData.name && formData.email && formData.message) {
-      console.log('Form submitted:', formData);
-      alert('Thank you for your message! We will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-    } else {
+ const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
       alert('Please fill in all fields.');
+      return;
     }
+
+const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+
+    emailjs.send(serviceID, templateID, formData, publicKey)
+      .then(() => {
+        alert('Thank you for your message! We will get back to you soon.');
+        setFormData({ name: '', email: '', message: '' });
+      })
+      .catch((error) => {
+        console.error('FAILED...', error);
+        alert('Failed to send message. Please try again later.');
+      });
   };
 
   return (
@@ -120,17 +135,19 @@ export default function ContactSection() {
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                     </svg>
                   </div>
-                  <span className="text-gray-700">+1 (555) 123-4567</span>
+                  <span className="text-gray-700">+94 (717) 083-004</span>
                 </div>
                 
-                <div className="flex items-center justify-center space-x-3">
+                 <div className="flex items-center justify-center space-x-3">
                   <div className="w-8 h-8 bg-teal-400 rounded-full flex items-center justify-center">
                     <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>
                   </div>
-                  <span className="text-gray-700">+1 (555) 987-6543</span>
+                  <span className="text-gray-700">Ellipza@gmail.com</span>
                 </div>
+             
                 
                 <div className="flex items-center justify-center space-x-3">
                   <div className="w-8 h-8 bg-teal-400 rounded-full flex items-center justify-center">
@@ -139,7 +156,7 @@ export default function ContactSection() {
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>
                   </div>
-                  <span className="text-gray-700">hello@ellipza.com</span>
+                  <span className="text-gray-700">Info@ellipza.com</span>
                 </div>
               </div>
             </div>
